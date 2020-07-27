@@ -15,7 +15,6 @@ Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'preservim/nerdtree'
 Plugin 'ayu-theme/ayu-vim' 
-"Plugin 'valloric/youcompleteme'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'chiel92/vim-autoformat'
@@ -26,6 +25,8 @@ Plugin 'szw/vim-tags'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'delimitMate.vim'
 Plugin 'bagrat/vim-buffet'
+Plugin 'sheerun/vim-polyglot'
+
 
 
 
@@ -35,8 +36,8 @@ filetype plugin indent on    " required
 " Color theme
 set termguicolors
 "let ayucolor="light"
-let ayucolor="mirage"
-"let ayucolor="dark"
+"let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
 
 "let g:sonokai_style = 'andromeda'
@@ -140,8 +141,6 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-"nerdtree hidden files
-let NERDTreeShowHidden=1
 
 "tabs
 nmap <leader>1 <Plug>BuffetSwitch(1)
@@ -160,3 +159,7 @@ noremap <S-Tab> :bp<CR>
 noremap <Leader><Tab> :Bw<CR>
 noremap <Leader><S-Tab> :Bw!<CR>
 noremap <C-t> :tabnew split<CR>
+
+
+"clang
+let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so.1'
