@@ -6,7 +6,7 @@ set shiftwidth=4
 set expandtab
 filetype off                  " required
 syntax on
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
@@ -26,8 +26,7 @@ Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'delimitMate.vim'
 Plugin 'bagrat/vim-buffet'
 Plugin 'sheerun/vim-polyglot'
-
-
+Plugin 'fatih/vim-go'
 
 
 call vundle#end()            " required
@@ -163,3 +162,8 @@ noremap <C-t> :tabnew split<CR>
 
 "clang
 let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so.1'
+
+
+"go
+let g:go_fmt_command = "goimports"
+
