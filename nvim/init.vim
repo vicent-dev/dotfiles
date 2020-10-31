@@ -8,20 +8,20 @@ set expandtab
 set spelllang=en_us,es_es
 filetype off                  " required
 syntax on
+" required
 set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()
+call vundle#begin()            
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'preservim/nerdtree'
-Plugin 'ayu-theme/ayu-vim' 
+Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'chiel92/vim-autoformat'
 Plugin 'sainnhe/sonokai'
-Plugin 'vim-vdebug/vdebug'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'szw/vim-tags'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
@@ -29,17 +29,18 @@ Plugin 'delimitMate.vim'
 Plugin 'bagrat/vim-buffet'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'fatih/vim-go'
+Plugin 'yuttie/comfortable-motion.vim'
 
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " Color theme
-"set termguicolors
+set termguicolors
 "let ayucolor="light"
 "let ayucolor="mirage"
-"let ayucolor="dark"
-"colorscheme ayu
+let ayucolor="dark"
+colorscheme ayu
 
 "let g:sonokai_style = 'andromeda'
 "let g:sonokai_style = 'atlantis'
@@ -65,10 +66,10 @@ noremap <C-f> :Autoformat<CR>
 
 
 " muñonsitos
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
+":command WQ wq
+":command Wq wq
+":command W w
+":command Q q
 
 
 " colors fzf
@@ -164,4 +165,26 @@ noremap <C-t> :tabnew split<CR>
 
 "clang
 let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so.1'
+
+
+" infinite undo
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
+let g:go_fmt_command = "gofmt"
+
+" smoth scroll
+"let g:comfortable_motion_scroll_down_key = "j"
+"let g:comfortable_motion_scroll_up_key = "k"
 

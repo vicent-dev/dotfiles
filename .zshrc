@@ -6,7 +6,8 @@ export ZSH="/home/sr/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
@@ -96,8 +97,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
- 
+
 if [[ -z $ZSH_THEME_CLOUD_PREFIX ]]; then
     ZSH_THEME_CLOUD_PREFIX='☁'
 fi
@@ -130,5 +130,7 @@ alias gps="git push"
 
 alias lampp="sudo /opt/lampp/lampp start"
 
-#apt
-alias sua="sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y"
+#pacman
+alias update="sudo pacman -Syu"
+
+alias vim="nvim"
