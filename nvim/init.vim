@@ -10,7 +10,7 @@ filetype off                  " required
 syntax on
 " required
 set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin()            
+call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
@@ -29,7 +29,10 @@ Plugin 'delimitMate.vim'
 Plugin 'bagrat/vim-buffet'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'fatih/vim-go'
-Plugin 'yuttie/comfortable-motion.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'gko/vim-coloresque'
+
 
 
 call vundle#end()            " required
@@ -135,14 +138,14 @@ autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 " coc completion on <tab>
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
 inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<Tab>" :
+            \ coc#refresh()
 
 "tabs
 nmap <leader>1 <Plug>BuffetSwitch(1)
@@ -161,6 +164,7 @@ noremap <S-Tab> :bp<CR>
 noremap <Leader><Tab> :Bw<CR>
 noremap <Leader><S-Tab> :Bw!<CR>
 noremap <C-t> :tabnew split<CR>
+let g:buffet_always_show_tabline=0
 
 
 "clang
@@ -182,9 +186,19 @@ if has('persistent_undo')
     set undofile
 endif
 
-let g:go_fmt_command = "gofmt"
+
+let g:go_fmt_command = "goimports"
+
 
 " smoth scroll
 "let g:comfortable_motion_scroll_down_key = "j"
 "let g:comfortable_motion_scroll_up_key = "k"
 
+"buffet colors
+function! g:BuffetSetCustomColors()
+hi! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#A2E691 guifg=#000000
+hi! BuffetTrunc cterm=bold ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
+hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
+hi! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
+hi! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
+endfunction
