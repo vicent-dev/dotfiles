@@ -32,24 +32,18 @@ Plugin 'fatih/vim-go'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'gko/vim-coloresque'
+Plugin 'mattn/emmet-vim'
+Plugin 'StanAngeloff/php.vim'
+Plugin '2072/vim-syntax-for-PHP.git'
 
 
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" Color theme
-set termguicolors
-"let ayucolor="light"
-"let ayucolor="mirage"
-"let ayucolor="dark"
-"colorscheme ayu
+colorscheme industry
+hi Normal guibg=NONE ctermbg=NONE
 
-"let g:sonokai_style = 'andromeda'
-"let g:sonokai_style = 'atlantis'
-"let g:sonokai_enable_italic = 1
-"let g:sonokai_disable_italic_comment = 1
-"colorscheme sonokai
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -190,15 +184,27 @@ endif
 let g:go_fmt_command = "goimports"
 
 
-" smoth scroll
-"let g:comfortable_motion_scroll_down_key = "j"
-"let g:comfortable_motion_scroll_up_key = "k"
-
 "buffet colors
-function! g:BuffetSetCustomColors()
-hi! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#A2E691 guifg=#000000
-hi! BuffetTrunc cterm=bold ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
-hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
-hi! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
-hi! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
+"function! g:BuffetSetCustomColors()
+"hi! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#A2E691 guifg=#000000
+"hi! BuffetTrunc cterm=bold ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
+"hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
+"hi! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
+"hi! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
+"endfunction
+
+
+"generate php tags -> ctags -R --PHP-kinds=cfi
+
+
+"php syntax
+function! PhpSyntaxOverride()
+  " Put snippet overrides in this function.
+  hi! link phpDocTags phpDefine
+  hi! link phpDocParam phpType
 endfunction
+
+augroup phpSyntaxOverride
+  autocmd!
+  autocmd FileType php call PhpSyntaxOverride()
+augroup END
