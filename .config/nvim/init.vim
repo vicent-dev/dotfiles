@@ -34,16 +34,17 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'gko/vim-coloresque'
 Plugin 'mattn/emmet-vim'
 Plugin 'StanAngeloff/php.vim'
-Plugin '2072/vim-syntax-for-PHP.git'
-
-
+Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-colorscheme industry
-hi Normal guibg=NONE ctermbg=NONE
 
+
+set termguicolors
+colorscheme gruvbox
+set bg=dark
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -198,13 +199,17 @@ let g:go_fmt_command = "goimports"
 
 
 "php syntax
-function! PhpSyntaxOverride()
-  " Put snippet overrides in this function.
-  hi! link phpDocTags phpDefine
-  hi! link phpDocParam phpType
-endfunction
+let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
+let g:php_cs_fixer_config = "default"                  " options: --config
+let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
 
-augroup phpSyntaxOverride
-  autocmd!
-  autocmd FileType php call PhpSyntaxOverride()
-augroup END
+noremap <C-b> :call PhpCsFixerFixFile()<CR>
+
+
+
+set wildignore+=vendor/**
+set wildignore+=var/cache/**
