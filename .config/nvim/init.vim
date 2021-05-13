@@ -35,6 +35,8 @@ Plugin 'gko/vim-coloresque'
 Plugin 'mattn/emmet-vim'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
 Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
@@ -44,7 +46,7 @@ filetype plugin indent on    " required
 
 set termguicolors
 colorscheme gruvbox
-set bg=dark
+set bg=light
 
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
@@ -213,3 +215,23 @@ noremap <C-b> :call PhpCsFixerFixFile()<CR>
 
 set wildignore+=vendor/**
 set wildignore+=var/cache/**
+
+
+
+"ptihon
+"pep8 
+au BufNewFile,BufRead *.py
+    \set tabstop=4
+    \set softtabstop=4
+    \set shiftwidth=4
+    \set textwidth=79
+    \set expandtab
+    \set autoindent
+    \set fileformat=unix
+
+let python_highlight_all=1
+
+
+
+
+
