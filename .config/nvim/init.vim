@@ -1,14 +1,13 @@
-set nocompatible              " be iMproved, required
+set nocompatible
 set number
-set relativenumber
 set tabstop=4
 set shiftwidth=4
 set expandtab
-"set spell
-set spelllang=en_us,es_es
-filetype off                  " required
+
+
+filetype off
 syntax on
-" required
+
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -17,38 +16,19 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'preservim/nerdtree'
-Plugin 'ayu-theme/ayu-vim'
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
-Plugin 'chiel92/vim-autoformat'
-Plugin 'sainnhe/sonokai'
-Plugin 'arnaud-lb/vim-php-namespace'
-Plugin 'szw/vim-tags'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'delimitMate.vim'
 Plugin 'bagrat/vim-buffet'
-Plugin 'sheerun/vim-polyglot'
 Plugin 'fatih/vim-go'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'gko/vim-coloresque'
 Plugin 'mattn/emmet-vim'
-Plugin 'StanAngeloff/php.vim'
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'nvie/vim-flake8'
-Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 
-
-set termguicolors
-colorscheme gruvbox
-set bg=light
-
-" Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
@@ -66,10 +46,10 @@ noremap <C-f> :Autoformat<CR>
 
 
 " muñonsitos
-":command WQ wq
-":command Wq wq
-":command W w
-":command Q q
+:command WQ wq
+:command Wq wq
+:command W w
+:command Q q
 
 
 " colors fzf
@@ -106,30 +86,6 @@ augroup _fzf
     autocmd!
     autocmd ColorScheme * call <sid>update_fzf_colors()
 augroup END
-
-
-" auto import php
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
-autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
-
-
-" auto sort imports php
-autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
-
-let g:php_namespace_sort_after_insert = 1
-
-" import
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 
 
@@ -185,53 +141,3 @@ endif
 
 
 let g:go_fmt_command = "goimports"
-
-
-"buffet colors
-"function! g:BuffetSetCustomColors()
-"hi! BuffetCurrentBuffer cterm=NONE ctermbg=106 ctermfg=8 guibg=#A2E691 guifg=#000000
-"hi! BuffetTrunc cterm=bold ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
-"hi! BuffetBuffer cterm=NONE ctermbg=239 ctermfg=8 guibg=#504945 guifg=#000000
-"hi! BuffetTab cterm=NONE ctermbg=66 ctermfg=8 guibg=#458588 guifg=#000000
-"hi! BuffetActiveBuffer cterm=NONE ctermbg=10 ctermfg=239 guibg=#999999 guifg=#504945
-"endfunction
-
-
-"generate php tags -> ctags -R --PHP-kinds=cfi
-
-
-"php syntax
-let g:php_cs_fixer_level = "symfony"                   " options: --level (default:symfony)
-let g:php_cs_fixer_config = "default"                  " options: --config
-let g:php_cs_fixer_rules = "@PSR2"          " options: --rules (default:@PSR2)
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information.
-
-noremap <C-b> :call PhpCsFixerFixFile()<CR>
-
-
-
-set wildignore+=vendor/**
-set wildignore+=var/cache/**
-
-
-
-"ptihon
-"pep8 
-au BufNewFile,BufRead *.py
-    \set tabstop=4
-    \set softtabstop=4
-    \set shiftwidth=4
-    \set textwidth=79
-    \set expandtab
-    \set autoindent
-    \set fileformat=unix
-
-let python_highlight_all=1
-
-
-
-
-
