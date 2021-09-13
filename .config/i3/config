@@ -8,8 +8,8 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-set $inner_gaps 15
-set $outer_gaps 15
+set $inner_gaps 0
+set $outer_gaps 0
 
 set $mod Mod4
 
@@ -21,8 +21,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner $inner_gaps
 gaps outer $outer_gaps
 
-font pango:Cascadia Mono 18
-
+font pango:Cascadia Mono 14
 
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -44,7 +43,8 @@ exec --no-startup-id nm-applet
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+#bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec st
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -208,12 +208,13 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 #wallpaper
-exec feh --bg-scale $HOME/wallpaper.jpg
+exec feh --bg-center $HOME/wallpaper.png
 
 
 #keyboard layout
-exec setxkbmap es
+exec setxkbmap en_US
 
 
 
+exec xrandr --output HDMI-1 --rotate left --auto --left-of eDP-1
 
