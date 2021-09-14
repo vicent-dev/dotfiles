@@ -24,10 +24,12 @@ Plugin 'bagrat/vim-buffet'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'morhetz/gruvbox'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+colorscheme gruvbox
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -140,4 +142,10 @@ if has('persistent_undo')
 endif
 
 
+"vim go
 let g:go_fmt_command = "goimports"
+noremap <C-u> :GoImplements<CR>
+
+
+
+
