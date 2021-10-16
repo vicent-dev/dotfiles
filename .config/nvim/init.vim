@@ -4,7 +4,6 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-
 filetype off
 syntax on
 
@@ -24,12 +23,15 @@ Plugin 'bagrat/vim-buffet'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'nvie/vim-flake8'
-Plugin 'morhetz/gruvbox'
+Plugin 'NLKNguyen/papercolor-theme'
+
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-colorscheme gruvbox
+set background=dark
+#set background=light
+colorscheme PaperColor
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -145,7 +147,4 @@ endif
 "vim go
 let g:go_fmt_command = "goimports"
 noremap <C-u> :GoImplements<CR>
-
-
-
 
