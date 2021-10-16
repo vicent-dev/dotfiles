@@ -30,7 +30,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 set background=dark
-#set background=light
+" set background=light
 colorscheme PaperColor
 
 map <C-h> <C-w>h
