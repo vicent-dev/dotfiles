@@ -214,9 +214,9 @@ exec feh --bg-center /home/sr/wallpaper.png
 
 
 #keyboard layout
-exec "setxkbmap -layout en_US,es"
+#exec "setxkbmap -layout en_US,es"
 exec "setxkbmap -option 'grp:alt_shift_toggle'"
 
 
-exec xrandr --output HDMI-1 --rotate left --auto --left-of eDP-1
+exec xrandr --output HDMI-1 --auto --left-of eDP-1
 

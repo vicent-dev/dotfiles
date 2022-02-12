@@ -3,9 +3,11 @@ set number
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set relativenumber
 
 filetype off
-syntax on
+"syntax on
+syntax off
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
@@ -24,14 +26,20 @@ Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'NLKNguyen/papercolor-theme'
-
+Plugin 'ellisonleao/gruvbox.nvim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-set background=dark
+"set background=dark
 " set background=light
-colorscheme PaperColor
+"colorscheme PaperColor
+set termguicolors
+set background=dark " or light if you want light mode
+colorscheme gruvbox
+
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -148,3 +156,5 @@ endif
 let g:go_fmt_command = "goimports"
 noremap <C-u> :GoImplements<CR>
 
+" 1.18 beta disable errors
+"au FileType go let g:go_fmt_autosave = 0
