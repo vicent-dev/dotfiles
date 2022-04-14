@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 if [[ -z $ZSH_THEME_CLOUD_PREFIX ]]; then
-    ZSH_THEME_CLOUD_PREFIX='☁'
+    ZSH_THEME_CLOUD_PREFIX='λ'
 fi
 
 PROMPT='%{$fg_bold[cyan]%}$ZSH_THEME_CLOUD_PREFIX %{$fg_bold[green]%} %{$fg[green]%}%c %{$fg_bold[cyan]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
@@ -136,4 +136,6 @@ alias update="sudo pacman -Syu"
 
 alias vim="nvim"
 
+export PATH=$PATH:/usr/local/go/bin
 
+eval "$(starship init zsh)"
