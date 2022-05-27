@@ -30,6 +30,12 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sonph/onehalf', { 'rtp': 'vim' }
 
+"php 
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'phpstan/vim-phpstan'
+
+
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -175,3 +181,13 @@ vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 vnoremap <C-s> <Esc>:Ag <C-R>=<SID>getVisualSelection()<CR><CR>
 vnoremap <C-f> <Esc>:FZF -q <C-R>=<SID>getVisualSelection()<CR><CR>
 
+"php
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+let g:phpstan_analyse_level = 4
