@@ -34,9 +34,9 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 set cursorline
-colorscheme onehalflight
+colorscheme onehalfdark
 
-let g:airline_theme='onehalflight'
+let g:airline_theme='onehalfdark'
 let g:lightline = { 'colorscheme': 'onehalfdark' }
 
 
@@ -45,14 +45,49 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-"fzf
+" start fzf
 nmap <Space> :Files<CR>
+
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ }
+
+function! s:getVisualSelection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+
+    if len(lines) == 0
+        return ""
+    endif
+
+    let lines[-1] = lines[-1][:column_end - (&selection == "inclusive" ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+
+    return join(lines, "\n")
+endfunction
+
+
+
+
+" search all selected
+function! s:find_git_root()  
+   return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'dir':s:find_git_root(),'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" \s -> search selection in project
+" \f -> search filename selection in project
+vnoremap <silent><leader>s <Esc>:Ag <C-R>=<SID>getVisualSelection()<CR><CR>
+vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>getVisualSelection()<CR><CR>
+
+" end fzf
 
 " toggle nerdtree
 nmap <C-o> :NERDTreeToggle<CR>
-
-" format file
-noremap <C-f> :Autoformat<CR>
 
 " muñonsitos
 :command WQ wq
