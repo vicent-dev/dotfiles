@@ -79,15 +79,11 @@ endfunction
 
  command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'dir':s:find_git_root(),'options': '--delimiter : --nth 4..'}, <bang>0)
 
-" \s -> search selection in project
-" \f -> search filename selection in project
-vnoremap <silent><leader>s <Esc>:Ag <C-R>=<SID>getVisualSelection()<CR><CR>
-vnoremap <silent><leader>f <Esc>:FZF -q <C-R>=<SID>getVisualSelection()<CR><CR>
 
 " end fzf
 
 " toggle nerdtree
-nmap <C-o> :NERDTreeToggle<CR>
+nmap <C-a> :NERDTreeToggle<CR>
 
 " muñonsitos
 :command WQ wq
@@ -168,3 +164,14 @@ endif
 "vim go
 let g:go_fmt_command = "goimports"
 noremap <C-u> :GoImplements<CR>
+
+" VISUAL NOREMAPS
+"
+" C-r -> search current file and replace inserted text
+" C-s -> search selection in project
+" C-f -> search filename selection in project
+
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+vnoremap <C-s> <Esc>:Ag <C-R>=<SID>getVisualSelection()<CR><CR>
+vnoremap <C-f> <Esc>:FZF -q <C-R>=<SID>getVisualSelection()<CR><CR>
+
