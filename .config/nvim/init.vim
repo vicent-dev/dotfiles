@@ -6,8 +6,8 @@ set expandtab
 set relativenumber
 
 filetype off
-"syntax on
-syntax off
+syntax on
+"syntax off
 
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
@@ -21,7 +21,6 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'delimitMate.vim'
-Plugin 'bagrat/vim-buffet'
 Plugin 'fatih/vim-go'
 Plugin 'mattn/emmet-vim'
 Plugin 'nvie/vim-flake8'
@@ -29,16 +28,16 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'ellisonleao/gruvbox.nvim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'sonph/onehalf', { 'rtp': 'vim' }
 
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-"set background=dark
-" set background=light
-"colorscheme PaperColor
-set termguicolors
-set background=dark " or light if you want light mode
-colorscheme gruvbox
+set cursorline
+colorscheme onehalflight
+
+let g:airline_theme='onehalflight'
+let g:lightline = { 'colorscheme': 'onehalfdark' }
 
 
 map <C-h> <C-w>h
@@ -49,13 +48,11 @@ map <C-l> <C-w>l
 "fzf
 nmap <Space> :Files<CR>
 
-
 " toggle nerdtree
 nmap <C-o> :NERDTreeToggle<CR>
 
 " format file
 noremap <C-f> :Autoformat<CR>
-
 
 " muñonsitos
 :command WQ wq
@@ -112,25 +109,6 @@ inoremap <silent><expr> <Tab>
             \ <SID>check_back_space() ? "\<Tab>" :
             \ coc#refresh()
 
-"tabs
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
-
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
-noremap <Leader><Tab> :Bw<CR>
-noremap <Leader><S-Tab> :Bw!<CR>
-noremap <C-t> :tabnew split<CR>
-let g:buffet_always_show_tabline=0
-
 
 "clang
 let g:clang_library_path='/usr/lib/llvm-10/lib/libclang.so.1'
@@ -155,6 +133,3 @@ endif
 "vim go
 let g:go_fmt_command = "goimports"
 noremap <C-u> :GoImplements<CR>
-
-" 1.18 beta disable errors
-"au FileType go let g:go_fmt_autosave = 0
