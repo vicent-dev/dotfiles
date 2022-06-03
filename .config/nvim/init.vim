@@ -4,6 +4,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set relativenumber
+set scrolloff=10
+set termguicolors
 
 filetype off
 syntax on
@@ -26,24 +28,24 @@ Plugin 'mattn/emmet-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'ellisonleao/gruvbox.nvim'
+Plugin 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sonph/onehalf', { 'rtp': 'vim' }
+Plugin 'nvim-lua/plenary.nvim' " don't forget to add this one if you don't have it yet!
+Plugin 'ThePrimeagen/harpoon'
 
 "php 
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'phpstan/vim-phpstan'
 
 
-
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set cursorline
-colorscheme onehalfdark
-
-let g:airline_theme='onehalfdark'
-let g:lightline = { 'colorscheme': 'onehalfdark' }
+colorscheme gruvbox
+"colorscheme tokyonight
 
 
 map <C-h> <C-w>h
@@ -191,3 +193,27 @@ autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
 autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
 let g:phpstan_analyse_level = 4
+
+
+"harpoon
+
+"open menu
+noremap , :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+"go to marks
+noremap <C-1>:lua require("harpoon.ui").nav_file(1)<CR>
+noremap <C-2>:lua require("harpoon.ui").nav_file(2)<CR>
+noremap <C-3>:lua require("harpoon.ui").nav_file(3)<CR>
+noremap <C-4>:lua require("harpoon.ui").nav_file(4)<CR>
+noremap <C-5>:lua require("harpoon.ui").nav_file(5)<CR>
+noremap <C-6>:lua require("harpoon.ui").nav_file(6)<CR>
+noremap <C-7>:lua require("harpoon.ui").nav_file(7)<CR>
+noremap <C-8>:lua require("harpoon.ui").nav_file(8)<CR>
+noremap <C-9>:lua require("harpoon.ui").nav_file(9)<CR>
+
+noremap . :lua require("harpoon.mark").add_file()<CR>
+
+" next and previous mark
+noremap <Tab> :lua require("harpoon.ui").nav_next()<CR>
+noremap <S-Tab>:lua require("harpoon.ui").nav_prev()<CR>
+
