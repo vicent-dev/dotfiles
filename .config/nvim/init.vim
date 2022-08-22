@@ -7,10 +7,6 @@ set relativenumber
 set scrolloff=10
 set termguicolors
 
-filetype off
-syntax on
-"syntax off
-
 set rtp+=~/.config/nvim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -171,6 +167,13 @@ endif
 
 "vim go
 let g:go_fmt_command = "goimports"
+let g:go_highlight_function_calls=1
+let g:go_highlight_functions=1
+
+let g:go_highlight_structs = 1 
+let g:go_highlight_methods = 1
+let g:go_highlight_build_constraints = 1
+
 noremap <C-u> :GoImplements<CR>
 
 " VISUAL NOREMAPS
