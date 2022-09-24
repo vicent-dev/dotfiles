@@ -1,7 +1,7 @@
 #!/bin/bash
 
 status () { 
-	echo -n "BAT: $(acpi | awk '{print $4}' | sed s/,//) | $(date '+%Y-%m-%d %H:%M')"
+    echo -n "VOL: $(awk -F"[][]" '/Left:/ { print $2 }' <(amixer sget Master)) | MUTE: $(pacmd list-sinks | awk '/muted/ { print $2 }') | BAT: $(acpi | awk '{print $4}' | sed s/,//) | $(date '+%Y-%m-%d %H:%M')"
 }
 
 
@@ -18,7 +18,7 @@ setxkbmap -option caps:escape
 
 while true; do
     xprop -root -set WM_NAME "$(status)"
-  sleep 5
+  sleep 3
 done &
 
 
